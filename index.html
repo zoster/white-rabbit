@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<style>
+			body {
+				background: black;
+				color: green;
+				font-family:monospace;
+				font-size: 18px;
+			}
+
+			input {
+				background: black;
+				color: green;
+				border: none;
+				outline: none;
+				font-family:monospace;
+				font-size: 18px;
+			}
+		</style>
+		<script>
+
+			var responses = ["what?", "I don't know what you mean.", "Command not found", "Command not found"];
+
+			function beginGame(){
+				writeText("What is your name?");
+				document.getElementById("input").focus();
+				document.getElementById("input").select();
+				step=0;
+				document.body.addEventListener( 'keyup', function (e) {
+					if ( e.keyCode == 13 ) {
+						inputValue = document.getElementById('input').value
+						
+						if(step==0){
+							writeIntro(inputValue);
+						}else {
+							writeText(inputValue);
+							if(responses[step] != undefined){
+								writeText(responses[step]);
+							}
+						}
+						document.getElementById('input').value = '';
+						step = step+1;
+						
+					}
+				});
+			}
+
+			function writeIntro(name){
+				cleatText();
+				writeText("Wake up, "+name);
+				writeText("Follow the white rabbit.");
+				setTimeout(function(){
+					writeText("Knock, knock, "+name);
+				}, 5000);
+				
+			}
+
+			function writeText(text){
+				document.getElementById("log").innerHTML = document.getElementById("log").innerHTML+text+"<br>";
+			}
+
+			function cleatText(){
+				document.getElementById("log").innerHTML = "";
+			}
+			
+		</script>
+	</head>
+	<body onload="beginGame()">
+		<div id="log">
+
+		</div>
+		<input  id="input" type="text" />
+	</body>
+</html>
