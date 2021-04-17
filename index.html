@@ -12,13 +12,13 @@
 			input {
 				background: black;
 				color: green;
-				caret-color: green;
 				border: none;
 				outline: none;
 				font-family:monospace;
 				font-size: 18px;
 				padding-left: 0;
 				margin-left: 0;
+				caret-color: green;
 			}
 		</style>
 		<script>
@@ -40,7 +40,7 @@
 						receiveInput();
 					}
 				});
-				document.getElementById('input').addEventListener( 'blur', function (e) {
+				document.getElementById('input').addEventListener( 'focusout', function (e) {
 					if(document.getElementById('input').length > 0) {
 						receiveInput();
 						focusInput();
