@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 	<head>
 		<style>
 			body {
@@ -19,7 +19,11 @@
 		</style>
 		<script>
 
-			var responses = ["what?", "I don't know what you mean.", "Command not found", "Command not found"];
+			var responses = ["", 
+				"There's no time!", 
+				"GO", 
+				"RUN"
+			];
 
 			function beginGame(){
 				writeText("What is your name?");
@@ -34,9 +38,12 @@
 							writeIntro(inputValue);
 						}else {
 							writeText(inputValue);
-							if(responses[step] != undefined){
+							if(responses[step] == undefined){
+								end();
+							}else{
 								writeText(responses[step]);
 							}
+							
 						}
 						document.getElementById('input').value = '';
 						step = step+1;
@@ -46,12 +53,13 @@
 			}
 
 			function writeIntro(name){
-				cleatText();
+				clearText();
+				openFullscreen();
 				writeText("Wake up, "+name);
 				writeText("Follow the white rabbit.");
 				setTimeout(function(){
 					writeText("Knock, knock, "+name);
-				}, 5000);
+				}, 1500);
 				
 			}
 
@@ -59,16 +67,34 @@
 				document.getElementById("log").innerHTML = document.getElementById("log").innerHTML+text+"<br>";
 			}
 
-			function cleatText(){
+			function clearText(){
 				document.getElementById("log").innerHTML = "";
+			}
+
+			function end(){
+				clearText();
+				input = document.getElementById("input");
+				input.parentNode.removeChild(input);
+
+			}
+
+			function openFullscreen() {
+				elem = document.getElementById("body")
+				if (elem.requestFullscreen) {
+					elem.requestFullscreen();
+				} else if (elem.webkitRequestFullscreen) { /* Safari */
+					elem.webkitRequestFullscreen();
+				} else if (elem.msRequestFullscreen) { /* IE11 */
+					elem.msRequestFullscreen();
+				}
 			}
 			
 		</script>
 	</head>
-	<body onload="beginGame()">
+	<body id="body" onload="beginGame()">
 		<div id="log">
 
 		</div>
-		<input  id="input" type="text" />
+		<input id="input" type="text" />
 	</body>
 </html>
