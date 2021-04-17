@@ -20,7 +20,9 @@
 		</style>
 		<script>
 
-			var responses = ["", 
+			var step = 0;
+			var responses = [
+				"", 
 				"There's no time!", 
 				"GO", 
 				"RUN"
@@ -32,7 +34,17 @@
 				step=0;
 				document.body.addEventListener( 'keyup', function (e) {
 					if ( e.keyCode == 13 ) {
-						inputValue = document.getElementById('input').value
+						receiveInput();
+					}
+				});
+				document.getElementById('input').addEventListener( 'blur', function (e) {
+					receiveInput();
+					focusInput();
+				});
+			}
+
+			function receiveInput(){
+				inputValue = document.getElementById('input').value
 						
 						if(step==0){
 							writeIntro(inputValue);
@@ -47,9 +59,6 @@
 						}
 						document.getElementById('input').value = '';
 						step = step+1;
-						
-					}
-				});
 			}
 
 			function focusInput(){
