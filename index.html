@@ -87,8 +87,8 @@
 
 			function end(){
 				clearText();
-				input = document.getElementById("input");
-				input.parentNode.removeChild(input);
+				form = document.getElementById("form");
+				form.parentNode.removeChild(form);
 
 			}
 
@@ -114,7 +114,7 @@
 		<div id="log">
 
 		</div>
-		<form action="#" method="post" onsubmit="return submitForm()">
+		<form id="form" action="#" method="post" onsubmit="return submitForm()">
 			<input id="input" type="text" />
 		</form>
 	</body>
