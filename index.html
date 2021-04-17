@@ -108,13 +108,18 @@
 				}
 			}
 
+			function submitForm(){
+				receiveInput();
+				return false;
+			}
+
 		</script>
 	</head>
 	<body id="body" onload="beginGame()" onclick="focusInput()">
 		<div id="log">
 
 		</div>
-		<form onsubmit="receiveInput()">
+		<form onsubmit="submitForm()">
 			<input id="input" type="text" />
 		</form>
 	</body>
