@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<style>
 			body {
 				background: black;
@@ -27,8 +28,7 @@
 
 			function beginGame(){
 				writeText("What is your name?");
-				document.getElementById("input").focus();
-				document.getElementById("input").select();
+				focusInput();
 				step=0;
 				document.body.addEventListener( 'keyup', function (e) {
 					if ( e.keyCode == 13 ) {
@@ -50,6 +50,11 @@
 						
 					}
 				});
+			}
+
+			function focusInput(){
+				document.getElementById("input").focus();
+				document.getElementById("input").select();
 			}
 
 			function writeIntro(name){
@@ -88,10 +93,10 @@
 					elem.msRequestFullscreen();
 				}
 			}
-			
+
 		</script>
 	</head>
-	<body id="body" onload="beginGame()">
+	<body id="body" onload="beginGame()" onclick="focusInput()">
 		<div id="log">
 
 		</div>
